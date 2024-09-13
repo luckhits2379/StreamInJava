@@ -23,9 +23,9 @@ public class ArrayExamples {
 
 	public int[] xorQueriesUsingStreamAPI(int[] arr, int[][] queries) {
 
-		prefixArr = Arrays.stream(arr).map((a) -> xor ^= a).toArray();
+		prefixArr = Arrays.stream(arr).map(a -> xor ^= a).toArray();
 
-		return Arrays.stream(queries).mapToInt((a) -> (a[0] == 0 ? 0 : prefixArr[a[0] - 1]) ^ prefixArr[a[1]]).toArray();
+		return Arrays.stream(queries).mapToInt(a -> (a[0] == 0 ? 0 : prefixArr[a[0] - 1]) ^ prefixArr[a[1]]).toArray();
 	}
 
 	public int[] xorQueriesUsingNormalJava(int[] arr, int[][] queries) {
