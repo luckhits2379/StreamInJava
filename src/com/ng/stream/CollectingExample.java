@@ -35,7 +35,8 @@ public class CollectingExample {
 
 		// Type2 : <R> R collect(Supplier<R> supplier, BiConsumer<R, ? super T>
 		// accumulator,BiConsumer<R, R> combiner);
-		// arg1 defines type, arg2 define how to add one element, arg3 defines how to merge or 2 partial result
+		// arg1 defines type, arg2 define how to add one element, arg3 defines how to
+		// merge or 2 partial result
 		List<Integer> lengthList1 = nameList.stream().map((s) -> s.length()).collect(() -> new ArrayList<Integer>(), (list, element) -> list.add(element), (listA, listB) -> listA.addAll(listB));
 
 		lengthList1.forEach(System.out::println);
@@ -47,14 +48,6 @@ public class CollectingExample {
 		Set<Integer> lengthSet1 = nameList.stream().map((s) -> s.length()).collect(HashSet::new, HashSet::add, HashSet::addAll);
 
 		lengthSet1.forEach(System.out::println);
-		
-		
-		
-		int[] rolls = new int[] {3,2,4,3};
-		// we can use direct collect(collectors.toSet()) on this, as Arrays.stream(rolls) returns intStream and that method is not supprted by int stream 
-		Set<Integer> set = Arrays.stream(rolls).collect(HashSet::new, HashSet::add, HashSet::addAll);
-		
-		set.forEach(System.out::println);
 
 	}
 
