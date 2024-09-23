@@ -3,6 +3,7 @@ package com.ng.stream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ArrayExamples {
 
@@ -28,23 +29,12 @@ public class ArrayExamples {
 		return Arrays.stream(queries).mapToInt(a -> (a[0] == 0 ? 0 : prefixArr[a[0] - 1]) ^ prefixArr[a[1]]).toArray();
 	}
 
-	public int[] xorQueriesUsingNormalJava(int[] arr, int[][] queries) {
+	// Using Array to map to entryset and then to list
+	public String[] uncommonFromSentences(String s1, String s2) {
 
-		int[] prefixXor = new int[arr.length + 1];
+		return Arrays.stream((s1 + " " + s2).split(" ")).collect(Collectors.groupingBy(s -> s, Collectors.counting())).entrySet().stream().filter(e -> e.getValue() == 1).map(e -> e.getKey()).toArray(String[]::new);
 
-		for (int i = 0; i < arr.length; i++) {
-
-			prefixXor[i + 1] = arr[i] ^ prefixXor[i];
-		}
-
-		int[] res = new int[queries.length];
-
-		for (int i = 0; i < queries.length; i++) {
-
-			res[i] = prefixXor[queries[i][1] + 1] ^ prefixXor[queries[i][0]];
-		}
-
-		return res;
+		// return list.toArray(new String[list.size()]);
 
 	}
 
